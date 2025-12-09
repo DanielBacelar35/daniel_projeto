@@ -1,50 +1,70 @@
+
 const botaoAdicionar = document.getElementById("adicionar");
 const tabelaBody = document.getElementById("tabela-body");
 const selectTema = document.getElementById("tema");
 
 botaoAdicionar.addEventListener("click", () => {
+
     const nome = document.getElementById("nome").value.trim();
     const categoria = document.getElementById("categoria").value.trim();
     const outro = document.getElementById("outro").value.trim();
 
-    // Validação simples
     if (!nome || !categoria || !outro) {
         alert("Preencha todos os campos!");
         return;
     }
 
-    // Criar linha
     const tr = document.createElement("tr");
 
-    tr.innerHTML = `
-        <td>${nome}</td>
-        <td>${categoria}</td>
-        <td>${outro}</td>
-        <td>
-            <button class="btn-concluir">Concluir</button>
-            <button class="btn-excluir">Excluir</button>
-        </td>
-    `;
+    const tdNome = document.createElement("td");
+    tdNome.textContent = nome;
+    tr.appendChild(tdNome);
 
-    // Evento concluir
-    tr.querySelector(".btn-concluir").addEventListener("click", () => {
+    const tdCategoria = document.createElement("td");
+    tdCategoria.textContent = categoria;
+    tr.appendChild(tdCategoria);
+
+    const tdOutro = document.createElement("td");
+    tdOutro.textContent = outro;
+    tr.appendChild(tdOutro);
+
+    const tdAcoes = document.createElement("td");
+
+    const btnConcluir = document.createElement("button");
+    btnConcluir.textContent = "Concluir";
+    btnConcluir.className = "btn-concluir";
+
+    btnConcluir.addEventListener("click", () => {
         tr.style.background = "#d4ffd4";
     });
 
-    // Evento excluir
-    tr.querySelector(".btn-excluir").addEventListener("click", () => {
+    tdAcoes.appendChild(btnConcluir);
+
+    const btnExcluir = document.createElement("button");
+    btnExcluir.textContent = "Excluir";
+    btnExcluir.className = "btn-excluir";
+
+    btnExcluir.addEventListener("click", () => {
         tr.remove();
     });
 
+    tdAcoes.appendChild(btnExcluir);
+
+    
+    tr.appendChild(tdAcoes);
+
+    
     tabelaBody.appendChild(tr);
 
-    // Limpar campos
+    
+    alert("Item adicionado com sucesso!");
+    
     document.getElementById("nome").value = "";
     document.getElementById("categoria").value = "";
     document.getElementById("outro").value = "";
 });
 
-// Troca de tema
+
 selectTema.addEventListener("change", () => {
     document.body.className = "";
     const temaSelecionado = selectTema.value;
@@ -53,5 +73,5 @@ selectTema.addEventListener("change", () => {
         document.body.classList.add("dark");
     } else if (temaSelecionado === "colorido") {
         document.body.classList.add("colorido");
-    }
+    }
 });
