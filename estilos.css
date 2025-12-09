@@ -58,7 +58,7 @@ th, td {
     color: white;
 }
 
-/* ----- TEMA DARK ----- */
+
 .dark {
     background: #222;
     color: #eee;
@@ -72,7 +72,7 @@ th, td {
     background: #333;
 }
 
-/* ----- TEMA COLORIDO ----- */
+
 .colorido {
     background: #f1ffba;
 }
